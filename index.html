@@ -38,7 +38,7 @@ out vec2 vTexCoord;
 out vec3 vNormal;
 
 void main() {
-  vTexCoord.s = (atan(aVertexPosition.x, aVertexPosition.y)/(2.0*Pi))+0.5;
+  vTexCoord.s = (atan(aVertexPosition.y, aVertexPosition.x)/(2.0*Pi))+0.5;
   vTexCoord.t = aVertexPosition.z+0.5;
 
   gl_Position = uProjectionMatrix*uModelViewMatrix*vec4(aVertexPosition, 1.0);
