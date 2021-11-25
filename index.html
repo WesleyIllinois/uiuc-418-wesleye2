@@ -53,6 +53,8 @@ void main() {
 var fs = `#version 300 es
 
 precision mediump float;
+
+const float Pi = 3.14159265358979323846264338327;
     
 in vec3 vNormal;
 in vec2 vTexCoord;
@@ -65,8 +67,8 @@ out vec4 outColor;
     
 void main() {
 
-  vTexCoord.s = ((atan(vPosition.w, vPosition.x))/(2.0*Pi)) + 0.5;
-  vTexCoord.t = vPosition.y + 0.5;
+  vTexCoord.s = ((atan(aVertexP.w, aVertexP.x))/(2.0*Pi)) + 0.5;
+  vTexCoord.t = aVertexP.y + 0.5;
 
   vec3 illinois = vec3(texture(uSampler, vTexCoord));
   vec3 stadium = vec3(texture(uSampler2, vTexCoord));
