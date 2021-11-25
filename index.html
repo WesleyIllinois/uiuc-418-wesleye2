@@ -36,8 +36,36 @@ uniform mat4 uProjectionMatrix;
 
 out vec2 vTexCoord;
 out vec3 vNormal;
+out vec4 Color;
 
 void main() {
+
+  vec3 n = normalize(uNormalMatrix*aVertexNormal);
+  vec3 l = normalize(uNormalMatrix*vec3(1.0,0.25,0.0));
+  vec4 p = uModelViewMatrix*vec4(aVertexPosition, 1.0);
+  vec3 v = normalize(-p.xyz);
+
+  float diff = max(dot(n, l), 0.0);
+  diff = diff * 1.0;
+  vec3 diffuseR = vec3(1.0,0.0,0.0) * diff * 0.5;
+  vec3 diffuseG = vec3(0.0,0.0,0.0) * diff * 0.5;
+  vec3 diffuseB = vec3(0.0,0.0,0.0) * diff * 0.5;
+  diffuse = diffuseR + diffuseG + diffuseB;
+  vec4 d = vec4(diffuse, 1.0);
+
+  vec3 r = reflect(-l, n);
+  float spec = pow(max(dot(v, r), 0.0), 10.0);
+  spec = spec * 1.0;
+  vec3 specularR = vec3(1.0,0.0,0.0) * spec*0.5;
+  vec3 specularG = vec3(0.0,1.0,0.0) * spec*0.5;
+  vec3 specularB = vec3(0.0,0.0,1.0) * spec*0.5;
+  specular = specularR + specularG + specularB;
+  vec4 s = vec4(specular, 1.0);
+  
+
+  color = (vec4(1.0,0.0,0.0,1.0)*d)+(vec4(1.0,1.0,1.0,1.0)*s);
+
+
   vTexCoord.s = (atan(aVertexPosition.y+.5, aVertexPosition.x+.5)/(2.0*Pi));
   vTexCoord.t = aVertexPosition.z+0.5;
 
