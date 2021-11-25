@@ -58,12 +58,12 @@ const float Pi = 3.14159265358979323846264338327;
     
 in vec3 vNormal;
 in vec2 vTexCoord;
-in vec2 vTexCoords;
 in vec3 aVertexP;
 
 uniform sampler2D uSampler;
 uniform sampler2D uSampler2;
 
+out vec2 vTexCoords;
 out vec4 outColor;
     
 void main() {
