@@ -39,6 +39,11 @@ out vec3 vNormal;
 
 void main() {
 
+  n = normalize(uNormalMatrix*aVertexNormal);
+  l = normalize(uNormalMatrix*vec3(1.0,0.25,0.0));
+  vec4 p = uModelViewMatrix*vec4(aVertexPosition, 1.0);
+  v = normalize(-p.xyz);
+
   aVertexP = aVertexPosition;
 
   gl_Position = uProjectionMatrix*uModelViewMatrix*vec4(aVertexPosition, 1.0);
