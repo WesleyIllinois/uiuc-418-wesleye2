@@ -24,7 +24,6 @@ var vert_normal_attr;
 
 var vs = `#version 300 es
 
-const float Pi = 3.14159265358979323846264338327;
 
 in vec3 aVertexPosition;
 in vec3 aVertexNormal;
@@ -34,9 +33,8 @@ uniform mat4 uModelViewMatrix;
 uniform mat3 uNormalMatrix;
 uniform mat4 uProjectionMatrix;
 
-out n, l, v;
+out vec3 n, l, v;
 out vec3 aVertexP;
-out vec3 vNormal;
 
 void main() {
 
@@ -110,7 +108,7 @@ void main() {
   vec3 stadium = vec3(texture(uSampler2, vTexCoords));
   vec3 c = 0.5*illinois + 0.5*stadium;
 
-  outColor = vec4(c,1.0) + (vec4(1.0,0.0,0.0,1.0)*d) + (vec4(1.0,1.0,1.0,1.0)*s);
+  outColor = vec4(c,1.0);
 }
 `;
 
