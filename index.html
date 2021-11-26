@@ -33,15 +33,12 @@ uniform mat4 uModelViewMatrix;
 uniform mat3 uNormalMatrix;
 uniform mat4 uProjectionMatrix;
 
-out vec3 n, l, v;
+
 out vec3 aVertexP;
+out vec2 vTexCoord;
+out vec3 vNormal;
 
 void main() {
-
-  n = normalize(uNormalMatrix*aVertexNormal);
-  l = normalize(uNormalMatrix*vec3(1.0,0.25,0.0));
-  vec4 p = uModelViewMatrix*vec4(aVertexPosition, 1.0);
-  v = normalize(-p.xyz);
 
   aVertexP = aVertexPosition;
 
@@ -65,41 +62,11 @@ in vec3 aVertexP;
 
 uniform sampler2D uSampler;
 uniform sampler2D uSampler2;
-in vec3 n,l,v;
-in vec3 n1;
-
-vec3 diffuse;
-vec3 specular;
 
 in vec2 vTexCoords;
 out vec4 outColor;
     
 void main() {
-
-  vec3 n1 = normalize(n);
-  vec3 l1 = normalize(l);
-  vec3 v1 = normalize(v);
-
-  float diff = max(dot(n1, l1), 0.0);
-  diff = diff * 1.0;
-  vec3 diffuseR = vec3(1.0,0.0,0.0) * diff * 0.5;
-  vec3 diffuseG = vec3(0.0,0.0,0.0) * diff * 0.5;
-  vec3 diffuseB = vec3(0.0,0.0,0.0) * diff * 0.5;
-  diffuse = diffuseR + diffuseG + diffuseB;
-
-  float spec = max(dot(n1, l1), 0.0);
-  vec3 r = 2.0*spec*n1 - l1;
-  float specc = pow(max(dot(v, r), 0.0), 10.0);
-  spec = spec * 1.0;
-  specc = specc * 1.0;
-  vec3 specularR = vec3(1.0,0.0,0.0) * (specc*0.5);
-  vec3 specularG = vec3(0.0,1.0,0.0) * (specc*0.5);
-  vec3 specularB = vec3(0.0,0.0,1.0) * (specc*0.5);
-  specular = specularR + specularG + specularB;
-  
-  vec4 d = vec4(diffuse, 1.0);
-
-  vec4 s = vec4(specular, 1.0);
   
   vTexCoords.s = ((atan(aVertexP.z, aVertexP.x))/(2.0*Pi)) + 0.5;
   vTexCoords.t = aVertexP.y + 0.5;
