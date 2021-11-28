@@ -102,8 +102,8 @@ void main() {
   vec4 s = vec4(specular, 1.0);
 
   
-  vTexCoord.s = ((atan(aVertexP.z, aVertexP.x))/(2.0*Pi)) + 0.5;
-  vTexCoord.t = aVertexP.y + 0.5;
+  vTexCoord.s = (((atan(aVertexP.z, aVertexP.x))/(2.0*Pi)) + 0.5)*.65;
+  vTexCoord.t = (aVertexP.y + 0.5)*.65;
 
   vec3 illinois = vec3(texture(uSampler, (-1)*vTexCoord));
   vec3 stadium = vec3(texture(uSampler2, vTexCoord));
