@@ -103,11 +103,11 @@ void main() {
   vec4 s = vec4(specular, 1.0);
 
   
-  vTexCoord.s = (((atan(aVertexP.z, aVertexP.x))/(2.0*Pi)) + 0.5)*(-.65);
-  vTexCoord.t = (aVertexP.y + 0.5)*(-.65);
+  vTexCoord.s = (((atan(aVertexP.z, aVertexP.x))/(2.0*Pi)) + 0.5)*(-1.3);
+  vTexCoord.t = (aVertexP.y + 0.5)*(1.3);
   
-  vTexCoords.s = (((atan(aVertexP.z, aVertexP.x))/(2.0*Pi)) + 0.5)*.50;
-  vTexCoords.t = (aVertexP.y + 0.5)*.50;
+  vTexCoords.s = (((atan(aVertexP.z, aVertexP.x))/(2.0*Pi)) + 0.5)*1.3;
+  vTexCoords.t = (aVertexP.y + 0.5)*1.3;
 
   vec3 illinois = vec3(texture(uSampler, vTexCoord));
   vec3 stadium = vec3(texture(uSampler2, vTexCoords));
