@@ -103,8 +103,8 @@ void main() {
   vec4 s = vec4(specular, 1.0);
 
   
-  vTexCoord.s = ((((atan(aVertexP.z, aVertexP.x))/(2.0*Pi))+.7)*(-1.3));
-  vTexCoord.t = ((aVertexP.y+.7)*1.3);
+  vTexCoord.s = ((((atan(aVertexP.z, aVertexP.x))/(2.0*Pi))+.4)*(-1.3));
+  vTexCoord.t = ((aVertexP.y+.4)*1.3);
   
   vTexCoords.s = (n.x + 1.0)/2.0;
   vTexCoords.t = (n.y + 1.0)/2.0;
