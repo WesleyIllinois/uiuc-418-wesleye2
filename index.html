@@ -35,7 +35,7 @@ uniform mat4 uProjectionMatrix;
 
 
 out vec3 aVertexP;
-out vec3 n, l, v;
+out vec3 n, v;
 out vec3 vNormal;
 
 void main() {
@@ -43,7 +43,6 @@ void main() {
   aVertexP = aVertexPosition;
   
   n = normalize(uNormalMatrix*aVertexNormal);
-  l = normalize(uNormalMatrix*vec3(1.0,0.25,0.0));
   vec4 p = uModelViewMatrix*vec4(aVertexPosition, 1.0);
   v = normalize(-p.xyz);
 
@@ -76,6 +75,8 @@ uniform sampler2D uSampler2;
 out vec4 outColor;
     
 void main() {
+
+  vec3 l = normalize(vec3(1.0,0.25,0.0));
 
   vec3 n1 = normalize(n);
   vec3 l1 = normalize(l);
